@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+{%load static%}
+<html lang="en" >
+<head>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <meta charset="UTF-8">
+    <title>Add Transaction</title>
+</head>
+<body>
+<ul>
+    <h4>
+            <a href="{% url 'index' %}">Home</a><br>
+            <a href="{% url 'Query_Results' %}">Query Results</a><br>
+            <a href="{% url 'Buy_Stocks' %}">Buy Stocks</a><br>
+        </h4>
+        </ul>
+<h1 style="text-align: center;">  Add New Transaction</h1>
+{% if not is_id_valid %}
+    <h4> ID Not Recognized!!!</h4>
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    ID: <input type="text" name="ID"  required><br>
+    Transaction Sum: <input type="text" name="tSum" required><br>
+    <input type="submit">
+    </form>
+<br><br>
+<h3> Last 10 Transaction:</h3>
+<table border="1" width="40%" align="center">
+    <th> Date</th>
+    <th> Investor ID</th>
+    <th> Transaction Sum</th>
+    {% for content in sql_res1 %}
+        <tr>
+            <td> {{ content.tDate }}</td>
+            <td> {{ content.ID }}</td>
+            <td> {{ content.TQuantity }}</td>
+        </tr>
+    {% endfor %}
+</table>
+<br><br><br><br>
+
+
+</body>
+</html>

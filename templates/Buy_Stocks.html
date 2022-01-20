@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <meta charset="UTF-8">
+    <title>Buy Stocks</title>
+</head>
+<body>
+<h1 style="text-align: center;">  Buy Stocks</h1>
+<ul>
+    <h4>
+        <a href="{% url 'index' %}">Home</a> <br>
+        <a href="{% url 'Query_Results' %}">Query Results</a><br>
+        <a href="{% url 'Add_Transaction' %}">Add Transaction</a><br>
+    </h4>
+</ul>
+
+<form method="POST">
+    {% csrf_token %}
+    ID: <input type="text" name="ID"  required><br>
+    Company: <input type="text" name="Symbol" required><br>
+    Quantity: <input type="text" name="BQuantity" required><br>
+    <input type="submit">
+    </form>
+
+{% if not is_id_valid %}
+    <h4> ID IS NOT RECOGNIZED!!! </h4>
+{% endif %}
+
+{% if not is_symbol_valid %}
+    <h4> COMPANY IS NOT RECOGNIZED!!! </h4>
+{% endif %}
+
+{% if is_prev_buying %}
+    <h4> THE INVESTOR ALREADY BOUGHT SHARES FROM THIS COMPANY TODAY</h4>
+    <h4> COME BACK TOMORROW!</h4>
+{% endif %}
+
+{% if not is_cash_enough %}
+    <h4> THE INVESTOR DOESN'T HAVE ENOUGH MONEY</h4>
+    <h4> PLEASE MAKE ANOTHER TRANSACTION AND COME BACK LATER</h4>
+{% endif %}
+
+<h3>10 Top Purchases:</h3>
+<table border="1" width="40%" align="center">
+    <th> Date</th>
+    <th> Investor ID</th>
+    <th> Company</th>
+    <th> Payed</th>
+
+    {% for content in sql_res1 %}
+        <tr>
+            <td> {{ content.tDate }}</td>
+            <td> {{ content.ID }}</td>
+            <td> {{ content.Symbol }}</td>
+            <td> {{ content.Payed }}</td>
+        </tr>
+    {% endfor %}
+</table>
+<br><br><br><br>
+
+
+
+
+
+</body>
+</html>

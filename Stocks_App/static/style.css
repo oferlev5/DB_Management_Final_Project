@@ -1,0 +1,31 @@
+body{
+    background-color:lemonchiffon;
+}
+h1{
+    color: black;;
+}
+h2{
+    color: brown;
+}
+h3{
+    color: brown;
+    text-align: center;
+}
+h4{
+    color: red;
+
+}
+img {
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.rectangle{
+    background-color: blue;
+    text-align: center;
+    border: 5px outset bisque;
+    width: 500px;
+}

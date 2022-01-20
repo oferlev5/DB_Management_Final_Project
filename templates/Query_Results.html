@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <meta charset="UTF-8">
+    <title>Query Results</title>
+</head>
+<body>
+<h1 style="text-align: center;">  Query Results</h1>
+<ul>
+    <h4>
+        <a href="{% url 'index' %}">Home</a> <br>
+        <a href="{% url 'Buy_Stocks' %}">Buy Stocks</a><br>
+        <a href="{% url 'Add_Transaction' %}">Add Transaction</a><br>
+    </h4>
+</ul>
+<h3>Query 1:</h3>
+<table border="1" width="40%" align="center">
+    <th> Name</th>
+    <th> Total Sum</th>
+    {% for content in sql_res1 %}
+        <tr>
+            <td> {{ content.Name }}</td>
+            <td> {{ content.totalSum }}</td>
+        </tr>
+    {% endfor %}
+</table>
+<br><br><br><br>
+
+<h3>Query 2:</h3>
+<table border="1" width="40%" align="center">
+    <th> Symbol</th>
+    <th> Name</th>
+    <th> Quantity</th>
+    {% for content in sql_res2 %}
+        <tr>
+            <td> {{ content.Symbol }}</td>
+            <td> {{ content.Name }}</td>
+            <td> {{ content.maxShares }}</td>
+        </tr>
+    {% endfor %}
+</table>
+<br><br><br><br>
+
+<h3>Query 3:</h3>
+<table border="1" width="40%" align="center">
+    <th> Date</th>
+    <th> Symbol</th>
+    <th> Name</th>
+    {% for content in sql_res3 %}
+        <tr>
+            <td> {{ content.Date }}</td>
+            <td> {{ content.Symbol }}</td>
+            <td> {{ content.Name }}</td>
+        </tr>
+    {% endfor %}
+</table>
+<br><br><br><br>
+{#<h3>Type with strongest Pokemon stronger than Attack threshold and more than Pokemon count Pokemons:</h3>#}
+{#<form method="POST">#}
+{#    {% csrf_token %}#}
+{#    Attack Threshold: <input type="number" name="attack" min="0"><br>#}
+{#    Pokemon Count: <input type="number" name="count"  min="0"><br>#}
+{#    <input type="submit">#}
+{#</form>#}
+{##}
+{##}
+{#{% if sql_res3 %}#}
+{#    <table border="1" width="40%" align="center">#}
+{#    <th>Type</th>#}
+{#        {% for content in sql_res3 %}#}
+{#            <tr>#}
+{#            <td>{{ content.Type }} </td>#}
+{#            </tr>#}
+{#        {% endfor %}#}
+{#    </table><br>#}
+{#{% endif %}#}
+{##}
+{#<br><br><br><br>#}
+{#<h3>Type with highest average instability:</h3>#}
+{#<table border="1" width="40%" align="center">#}
+{#    <th> Type</th>#}
+{#    <th> Average Instability</th>#}
+{#    {% for content in sql_res4 %}#}
+{#        <tr>#}
+{#            <td> {{ content.Type }}</td>#}
+{#            <td> {{ content.AverageInstability }}</td>#}
+{#        </tr>#}
+{#    {% endfor %}#}
+{#</table>#}
+
+
+
+</body>
+</html>

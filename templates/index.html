@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+{%load static%}
+<html lang="en" >
+<head>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<h1 style="text-align: center;">  Welcome to the Stocks Website</h1>
+<ul>
+    <h4>
+            <a href="{% url 'Query_Results' %}">Query Results</a><br>
+            <a href="{% url 'Add_Transaction' %}">Add_Transaction</a><br>
+            <a href="{% url 'Buy_Stocks' %}">Buy Stocks</a><br>
+        </h4>
+        </ul>
+
+<img src= "{% static 'stocks2.PNG'%}"
+     alt="stocks"
+     style="width:500px;height:300px;">
+
+</body>
+</html>
