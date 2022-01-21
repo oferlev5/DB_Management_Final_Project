@@ -144,7 +144,7 @@ def Buy_Stocks(request):
                         sql_res7 = dictfetchall(cursor)
                         a_cash = sql_res7.pop(0).get("AvailableCash")
 
-                    if (a_cash >= BQuantity * share_price):
+                    if a_cash >= BQuantity * share_price:
                         with connection.cursor() as cursor:
                             cursor.execute("""INSERT INTO Buying (tDate, ID, Symbol,BQuantity) 
                                               VALUES (%s,%s,%s,%s)""", [today, ID, Symbol, BQuantity])
